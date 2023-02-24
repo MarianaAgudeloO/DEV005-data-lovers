@@ -30,7 +30,7 @@ const secondSelect = document.getElementById("secondSelect");
 const btnForm = document.getElementById("btnForm");
 
 // Comportamiento al elegir determinada opción del primer select
-form.addEventListener("change", () =>{
+firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;
   secondSelect.innerHTML = "";
 
@@ -85,6 +85,55 @@ form.addEventListener("change", () =>{
 // Comportamiento del formulario al enviarlo
 form.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevenir que se recargue la página
+  secondSelect.addEventListener("change", () => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevenir que se recargue la página
+      const selected = firstSelect.value;
+      console.log(selected);
+      const selectedOption = secondSelect.value;
+      console.log(selectedOption);
+      // Filtrar los personajes según la opción seleccionada
+      const filteredCharacters = characters.filter((character) => {
+        if (selected === "Especie") {
+          return character.species === selectedOption;
+        }
+        if (selected === "Género") {
+          return character.gender === selectedOption;
+        }
+        if (selected === "Lugar de origen") {
+          return character.origin.name === selectedOption;
+        }
+        if (selected === "Location") {
+          return character.location.name === selectedOption;
+        }
+        if (selected === "Estado de vida") {
+          return character.status === selectedOption;
+        }
+      });
+      // Renderizar los personajes filtrados
+      console.log(filteredCharacters);
+      main.innerHTML = "";
+      filteredCharacters.forEach((character) => {
+        const templateCharacterCard = `
+        <div>
+          <img src = "${character.image}" alt = "${character.name}"></img>
+          <p>Nombre: ${character.name}</p>
+          <p>Género: ${character.gender}</p>
+          <p>Estado de vida: ${character.status}</p>
+          <p>Especie: ${character.species}</p>
+          <p>Origen: ${character.origin.name}</p>
+          <p>Se encuentra actualemente: ${character.location.name}</p>
+        </div>
+      `;
+        main.innerHTML += templateCharacterCard;
+      });
+    });
+  })
+
+
+
+
+
 
   
   const selected = firstSelect.value;

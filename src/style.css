@@ -1,3 +1,12 @@
-.none {
-    display: none;
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+
+.none{
+  display: none;
 }
