@@ -8,19 +8,11 @@ const characters = data.results;
 // Renderiza los personajes al cargar la página
 window.addEventListener("load", () =>{
   characters.forEach((character) => {
-    const templateCharacterCard = `
-    <div>
-      <img src = "${character.image}" alt = "${character.name}"></img>
-      <p>Nombre: ${character.name}</p>
-      <p>Especie: ${character.species}</p>
-      <p>Género: ${character.gender}</p>
-      <p>Estado de vida: ${character.status}</p>
-      <p>Origen: ${character.origin.name}</p>
-      <p>Se encuentra actualemente: ${character.location.name}</p>
-    </div>
-    `;
+    let card = "";
+    card = createCard(character);
+    
     if(main.childElementCount <= 20){
-      main.innerHTML += templateCharacterCard;
+      main.innerHTML += card;
     }
   });
 });
@@ -82,12 +74,13 @@ firstSelect.addEventListener("change", () =>{
   }  
 })
 
-// comportamiento al elegir segunda opcion del filtro y renderizacion de los personajes filtrados
 secondSelect.addEventListener("change", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevenir que se recargue la página
     const selected = firstSelect.value;
+    console.log(selected);
     const selectedOption = secondSelect.value;
+    console.log(selectedOption);
     // Filtrar los personajes según la opción seleccionada
     const filteredCharacters = characters.filter((character) => {
       if (selected === "Especie") {
@@ -107,25 +100,38 @@ secondSelect.addEventListener("change", () => {
       }
     });
     // Renderizar los personajes filtrados
+    console.log(filteredCharacters);
     main.innerHTML = "";
     filteredCharacters.forEach((character) => {
-      const templateCharacterCard = `
-        <div>
-          <img src = "${character.image}" alt = "${character.name}"></img>
-          <p>Nombre: ${character.name}</p>
-          <p>Especie: ${character.species}</p>
-          <p>Género: ${character.gender}</p>
-          <p>Estado de vida: ${character.status}</p>
-          <p>Origen: ${character.origin.name}</p>
-          <p>Se encuentra actualemente: ${character.location.name}</p>
-        </div>
-      `;
-      main.innerHTML += templateCharacterCard;
+      let card = "";
+      card = createCard(character);
+      main.innerHTML += card;
     });
   });
 })
 
 
+
+
+// funcion para crear cards
+function createCard(element){
+  let templateCharacterCard = `
+  <div class ="card">
+    <div>
+      <img src = "${element.image}" alt = "${element.name}" class="imgCard"></img>
+    </div>
+    <div>
+      <p>Nombre: ${element.name}</p>
+      <p>Especie: ${element.species}</p>
+      <p>Género: ${element.gender}</p>
+      <p>Estado de vida: ${element.status}</p>
+      <p>Origen: ${element.origin.name}</p>
+      <p>Se encuentra actualmente: ${element.location.name}</p>
+    </div>
+  </div>
+  `;
+  return templateCharacterCard;
+}
 // filtrado de especie, género, estado de vida, orígen y locación
 
 const species = characters.map(character => character.species);
