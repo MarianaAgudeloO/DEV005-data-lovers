@@ -11,10 +11,12 @@ window.addEventListener("load", () =>{
     const templateCharacterCard = `
     <div>
       <img src = "${character.image}" alt = "${character.name}"></img>
-      <p >Nombre: ${character.name}</p>
-      <p >Especie: ${character.species}</p>
-      <p >Origen: ${character.origin.name}</p>
-      <p >Se encuentra actualemente: ${character.location.name}</p>
+      <p>Nombre: ${character.name}</p>
+      <p>Especie: ${character.species}</p>
+      <p>Género: ${character.gender}</p>
+      <p>Estado de vida: ${character.status}</p>
+      <p>Origen: ${character.origin.name}</p>
+      <p>Se encuentra actualemente: ${character.location.name}</p>
     </div>
     `;
     if(main.childElementCount <= 20){
@@ -109,11 +111,13 @@ secondSelect.addEventListener("change", () => {
     filteredCharacters.forEach((character) => {
       const templateCharacterCard = `
         <div>
-          <img src="${character.image}" alt="${character.name}">
+          <img src = "${character.image}" alt = "${character.name}"></img>
           <p>Nombre: ${character.name}</p>
           <p>Especie: ${character.species}</p>
+          <p>Género: ${character.gender}</p>
+          <p>Estado de vida: ${character.status}</p>
           <p>Origen: ${character.origin.name}</p>
-          <p>Se encuentra actualmente: ${character.location.name}</p>
+          <p>Se encuentra actualemente: ${character.location.name}</p>
         </div>
       `;
       main.innerHTML += templateCharacterCard;
