@@ -4,9 +4,10 @@
   padding: 0px;
 }
 
-
-
-
+h1{
+  margin: 25px;
+}
 .none{
   display: none;
 }
+

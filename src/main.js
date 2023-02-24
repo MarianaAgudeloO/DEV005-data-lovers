@@ -80,13 +80,12 @@ firstSelect.addEventListener("change", () =>{
   }  
 })
 
+// comportamiento al elegir segunda opcion del filtro y renderizacion de los personajes filtrados
 secondSelect.addEventListener("change", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevenir que se recargue la página
     const selected = firstSelect.value;
-    console.log(selected);
     const selectedOption = secondSelect.value;
-    console.log(selectedOption);
     // Filtrar los personajes según la opción seleccionada
     const filteredCharacters = characters.filter((character) => {
       if (selected === "Especie") {
@@ -106,7 +105,6 @@ secondSelect.addEventListener("change", () => {
       }
     });
     // Renderizar los personajes filtrados
-    console.log(filteredCharacters);
     main.innerHTML = "";
     filteredCharacters.forEach((character) => {
       const templateCharacterCard = `
@@ -122,12 +120,6 @@ secondSelect.addEventListener("change", () => {
     });
   });
 })
-
-
-
-
-
-
 
 
 // filtrado de especie, género, estado de vida, orígen y locación
