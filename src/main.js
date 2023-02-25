@@ -1,4 +1,5 @@
 import data from './data/rickandmorty/rickandmorty.js';
+import datajs from './data.js';
 
 
 const main = document.getElementById("main");
@@ -7,19 +8,10 @@ const characters = data.results;
 // Renderiza los personajes al cargar la página
 window.addEventListener("load", () =>{
   characters.forEach((character) => {
-    const templateCharacterCard = `
-    <div>
-      <img src = "${character.image}" alt = "${character.name}"></img>
-      <p>Nombre: ${character.name}</p>
-      <p>Género: ${character.gender}</p>
-      <p>Estado de vida: ${character.status}</p>
-      <p>Especie: ${character.species}</p>
-      <p>Origen: ${character.origin.name}</p>
-      <p>Se encuentra actualemente: ${character.location.name}</p>
-    </div>
-    `;
+    let card = "";
+    card = createCard(character);
     if(main.childElementCount <= 20){
-      main.innerHTML += templateCharacterCard;
+      main.innerHTML += card;
     }
   });
 });
@@ -27,7 +19,48 @@ window.addEventListener("load", () =>{
 const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
-const btnForm = document.getElementById("btnForm");
+const btnSearch = document.getElementById("search");
+const searchText = document.getElementById("searchText");
+
+//Bucador
+btnSearch.addEventListener("click", () => {
+  const text = searchText.value;
+  const results = datajs.searchCharacter(text)
+  main.innerHTML = "";
+  results.forEach((character) => {    
+    let card = "";
+    card = createCard(character);
+    if(main.childElementCount <= 20){
+      main.innerHTML += card;
+    }
+  }
+  )
+})
+
+const btnSort = document.getElementById("btnSort");
+const sortSelect = document.getElementById("sort");
+//Ordenar
+btnSort.addEventListener("click", () => { 
+  const sortSelected = sortSelect.value;
+  let results = [];
+  if (sortSelected === 'A-z'){
+    results = datajs.orderCharacters(characters)
+  }
+  if (sortSelected === 'Z-a'){
+    results = datajs.orderCharactersDescending(characters)
+  }
+  
+  main.innerHTML = "";
+  results.forEach((character) => {    
+    let card = "";
+    card = createCard(character);
+    if(main.childElementCount <= 20){
+      main.innerHTML += card;
+    }
+  }
+  )
+})
+
 
 // Comportamiento al elegir determinada opción del primer select
 firstSelect.addEventListener("change", () =>{
@@ -89,9 +122,7 @@ form.addEventListener("submit", (event) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault(); // Prevenir que se recargue la página
       const selected = firstSelect.value;
-      console.log(selected);
       const selectedOption = secondSelect.value;
-      console.log(selectedOption);
       // Filtrar los personajes según la opción seleccionada
       const filteredCharacters = characters.filter((character) => {
         if (selected === "Especie") {
@@ -111,37 +142,17 @@ form.addEventListener("submit", (event) => {
         }
       });
       // Renderizar los personajes filtrados
-      console.log(filteredCharacters);
       main.innerHTML = "";
-      filteredCharacters.forEach((character) => {
-        const templateCharacterCard = `
-        <div>
-          <img src = "${character.image}" alt = "${character.name}"></img>
-          <p>Nombre: ${character.name}</p>
-          <p>Género: ${character.gender}</p>
-          <p>Estado de vida: ${character.status}</p>
-          <p>Especie: ${character.species}</p>
-          <p>Origen: ${character.origin.name}</p>
-          <p>Se encuentra actualemente: ${character.location.name}</p>
-        </div>
-      `;
-        main.innerHTML += templateCharacterCard;
+      let card = "";
+      filteredCharacters.forEach((character) => {        
+        card = createCard(character);
+        main.innerHTML += card;
       });
     });
   })
-
-
-
-
-
-
   
   const selected = firstSelect.value;
   const selectedOption = secondSelect.value;
-  
-
-
-
   // Filtrar los personajes según la opción seleccionada
   const filteredCharacters = characters.filter((character) => {
     if (selected === "Especie") {
@@ -164,21 +175,31 @@ form.addEventListener("submit", (event) => {
   // Renderizar los personajes filtrados
   main.innerHTML = "";
   filteredCharacters.forEach((character) => {
-    const templateCharacterCard = `
-      <div>
-        <img src = "${character.image}" alt = "${character.name}"></img>
-        <p>Nombre: ${character.name}</p>
-        <p>Género: ${character.gender}</p>
-        <p>Estado de vida: ${character.status}</p>
-        <p>Especie: ${character.species}</p>
-        <p>Origen: ${character.origin.name}</p>
-        <p>Se encuentra actualemente: ${character.location.name}</p>
-      </div>
-    `;
-    main.innerHTML += templateCharacterCard;
+    let card = "";
+    card = createCard(character);
+    main.innerHTML += card;
   });
 });
 
+// funcion para crear cards
+function createCard(element){
+  const templateCharacterCard = `
+  <div class ="card">
+    <div>
+      <img src = "${element.image}" alt = "${element.name}" class="imgCard"></img>
+    </div>
+    <div>
+      <p>Nombre: ${element.name}</p>
+      <p>Especie: ${element.species}</p>
+      <p>Género: ${element.gender}</p>
+      <p>Estado de vida: ${element.status}</p>
+      <p>Origen: ${element.origin.name}</p>
+      <p>Se encuentra actualmente: ${element.location.name}</p>
+    </div>
+  </div>
+  `;
+  return templateCharacterCard;
+}
 
 // filtrado de especie, género, estado de vida, orígen y locación
 
