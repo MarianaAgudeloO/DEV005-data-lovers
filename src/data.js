@@ -1,12 +1,13 @@
 import data from './data/rickandmorty/rickandmorty.js';
 
 const characters = data.results;
+
 //Arreglo de personajes que incluyen en el nombre, el texto ingresado
 export const searchCharacter = (text) => {
   const results = data.results.filter(character => {
     return character.name.toLowerCase().includes(text.toLowerCase());
-  });
-  return results;
+  }); 
+  return results; 
 }
 //Arreglo de personajes ordenados de A-z
 export const orderCharacters = (characters) => {
@@ -19,7 +20,7 @@ export const orderCharactersDescending = (characters) => {
   characters.sort((a, b) => {
     return b.name.localeCompare(a.name);
   });
-  return characters;
+  return characters; 
 }
 
 export const filter = {
@@ -38,7 +39,7 @@ export const filter = {
       arrayCategory = genderList;
       break;
     }
-    case "Origen":{
+    case "Lugar de origen":{
       const originComplete = characters.map((item) => item.origin.name);
       const originsList = originComplete.filter((item, index) => originComplete.indexOf(item) === index);
       arrayCategory = originsList;

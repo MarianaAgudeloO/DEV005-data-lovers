@@ -3,47 +3,54 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Data Lovers</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div id="root">
+  <header>
     <h1>RICK AND MORTY HUB</h1>
-    <nav>
-      <section>
+    <nav class="nav">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkBtn">
+          <img class="bars" src="images/bars.png"></img>
+        </label>
+      <ul  class = "browser">
         <!--Zona de búsqueda-->
-        <input type="text" id = "searchText" placeholder="Buscar personaje">
-        <button id = "search"> Buscar </button>
+        <li  class="optionNav">
+          <input type="text" id = "searchText" placeholder="Buscar personaje">
+          <button class= "btn" id = "search"> Buscar </button>
+        </li>
         <!-- Ordenar -->
-        <section>
+        <li class="optionNav">
             <select name="order" id="sort" >
               <option selected="true" disabled="disabled">Ordenar por:</option>
               <option value="A-z">A-z</option>
               <option value="Z-a">Z-a</option>
             </select>
-            <button id="btnSort">Ordenar</button>
-        </section>
+            <button class= "btn" id="btnSort">Ordenar</button>
+          </li>
         <!-- Filtrar -->
-        <section>
-          <form>
+        <li>
+          <form class="optionNav">
             <select name="filtrar" id="filt" >
               <option selected="true" disabled="disabled">Filtrar por: </option>
               <option value="Género">Género</option>
               <option value="Estado de vida">Estado de vida</option>
               <option value="Especie">Especie</option>
               <option value="Lugar de origen">Lugar de origen</option>
-              <option value="Location">Lugar donde vive</option>
+              <option value="Se encuentra actualmente">Se encuentra actualmente</option>
             </select>
             <select name="" id="secondSelect" class="none"></select>
-            <button id="btnForm" type="submit">Filtrar</button>
-        </form>
-        </section>
-      </section>
+            <button class= "btn" id="btnForm" type="submit">Filtrar</button>
+          </form>
+        </li>
+      </ul>
     </nav>
+  </header>
     <main id="main" class="cardContainer"></main>
     <footer></footer>
-  </div>
   <script src="main.js" type="module"></script>
   <script src="data.js" type="module"></script>
 </body>
