@@ -24,15 +24,6 @@ nav{
   flex-wrap: wrap;
   padding: 70px;
 }
-
-/* .cardContainer {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: 5px;
-  background-color: #2196F3;
-  padding: 10px;
-} */
-
 .card{
   display: flex;
   flex-direction: column;
@@ -40,7 +31,7 @@ nav{
   padding: 15px;
   margin: 20px;
   width: 300px;
-  height: 410px;
+  height: 420px;
   border-style: solid;
   border-color: black;
 }
@@ -49,14 +40,8 @@ nav{
   height: 250px;
 }
 
-
-
-
-
-
 /* .grid-container {
   display: grid;
-
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  
   grid-gap: 5px;
   justify-items: center;
@@ -69,4 +54,3 @@ nav{
   width: 100px;
   height: 100px;
 } */
-

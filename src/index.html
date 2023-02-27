@@ -12,22 +12,31 @@
     <h1>RICK AND MORTY HUB</h1>
     <nav>
       <section>
-        <input type="text" placeholder="Buscar personaje">
-        <button>Buscar</button>
-      </section>
-      <section>
-        <form>
-          <label for="filt">Filtrar</label>
-          <select name="filtrar" id="filt" >
-            <option selected="true" disabled="disabled">Selecciona una opción</option>
-            <option value="Género">Género</option>
-            <option value="Estado de vida">Estado de vida</option>
-            <option value="Especie">Especie</option>
-            <option value="Origen">Origen</option>
-            <option value="Se encuentra actualmente">Se encuentra actualmente</option>
-          </select>
-          <select name="" id="secondSelect" class="none"></select>
-          <button id="btnForm">Filtrar</button>
+        <!--Zona de búsqueda-->
+        <input type="text" id = "searchText" placeholder="Buscar personaje">
+        <button id = "search"> Buscar </button>
+        <!-- Ordenar -->
+        <section>
+            <select name="order" id="sort" >
+              <option selected="true" disabled="disabled">Ordenar por:</option>
+              <option value="A-z">A-z</option>
+              <option value="Z-a">Z-a</option>
+            </select>
+            <button id="btnSort">Ordenar</button>
+        </section>
+        <!-- Filtrar -->
+        <section>
+          <form>
+            <select name="filtrar" id="filt" >
+              <option selected="true" disabled="disabled">Filtrar por: </option>
+              <option value="Género">Género</option>
+              <option value="Estado de vida">Estado de vida</option>
+              <option value="Especie">Especie</option>
+              <option value="Lugar de origen">Lugar de origen</option>
+              <option value="Location">Lugar donde vive</option>
+            </select>
+            <select name="" id="secondSelect" class="none"></select>
+            <button id="btnForm" type="submit">Filtrar</button>
         </form>
       </section>
     </nav>
@@ -35,6 +44,7 @@
     <footer></footer>
   </div>
   <script src="main.js" type="module"></script>
+  <script src="data.js" type="module"></script>
 </body>
 
 </html>

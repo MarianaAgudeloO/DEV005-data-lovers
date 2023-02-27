@@ -1,6 +1,26 @@
 import data from './data/rickandmorty/rickandmorty.js';
 
 const characters = data.results;
+//Arreglo de personajes que incluyen en el nombre, el texto ingresado
+export const searchCharacter = (text) => {
+  const results = data.results.filter(character => {
+    return character.name.toLowerCase().includes(text.toLowerCase());
+  });
+  return results;
+}
+//Arreglo de personajes ordenados de A-z
+export const orderCharacters = (characters) => {
+  characters.sort((a, b) => a.name.localeCompare(b.name));
+  return characters;
+}
+
+//Arreglo de personajes ordenados de Z-a
+export const orderCharactersDescending = (characters) => {
+  characters.sort((a, b) => {
+    return b.name.localeCompare(a.name);
+  });
+  return characters;
+}
 
 export const filter = {
   filterCategory: (optionSelected) => {
@@ -60,3 +80,6 @@ export const filter = {
     return filteredCharacters;
   }
 };
+
+
+
