@@ -24,6 +24,15 @@ nav{
   flex-wrap: wrap;
   padding: 70px;
 }
+
+/* .cardContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 5px;
+  background-color: #2196F3;
+  padding: 10px;
+} */
+
 .card{
   display: flex;
   flex-direction: column;
