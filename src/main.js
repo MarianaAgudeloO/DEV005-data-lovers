@@ -1,4 +1,4 @@
-import { filterCategory, filterCharacters, createCard } from './data.js';
+import { filterCategory, filterCharacters } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 
@@ -21,26 +21,57 @@ const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
 
-// Comportamiento al elegir determinada opción del primer select
+// Comportamiento al elegir una categoría
 firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;
   secondSelect.innerHTML = "";
-  filterCategory(selected, secondSelect); 
-})
+  const arrayCategoryFiltered = filterCategory(selected);
+  arrayCategoryFiltered.forEach((element) => {
+    const templateOptions = `
+     <option value = "${element}">${element}</option>
+     `;
+    secondSelect.innerHTML += templateOptions;
+  });
+  secondSelect.classList.remove("none");
+});
 
+// Comportamiento al elegir una opcion de la categoría seleccionada antes
 secondSelect.addEventListener("change", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevenir que se recargue la página
     const selected = firstSelect.value;
     const selectedOption = secondSelect.value;
     // Filtrar los personajes según la opción seleccionada
-    filterCharacters(selected, selectedOption, main);  
+    const filteredCharacters = filterCharacters(selected, selectedOption); 
+    main.innerHTML = "";
+    filteredCharacters.forEach((character) => {
+      let card = "";
+      card = createCard(character);
+      main.innerHTML += card;
+    });
   });
 })
 
 
-
-
+// Creación de card de cada personaje
+export const createCard = (element) => {
+  const templateCharacterCard = `
+  <div class ="card">
+    <div>
+      <img src = "${element.image}" alt = "${element.name}" class="imgCard"></img>
+    </div>
+    <div>
+      <p>Nombre: ${element.name}</p>
+      <p>Especie: ${element.species}</p>
+      <p>Género: ${element.gender}</p>
+      <p>Estado de vida: ${element.status}</p>
+      <p>Origen: ${element.origin.name}</p>
+      <p>Se encuentra actualmente: ${element.location.name}</p>
+    </div>
+  </div>
+  `;
+  return templateCharacterCard;
+}
 
 
 
