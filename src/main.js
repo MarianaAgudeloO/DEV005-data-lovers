@@ -1,4 +1,4 @@
-import { filterCategory, filterCharacters } from './data.js';
+import { filter } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
 
 
@@ -25,7 +25,7 @@ const secondSelect = document.getElementById("secondSelect");
 firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;
   secondSelect.innerHTML = "";
-  const arrayCategoryFiltered = filterCategory(selected);
+  const arrayCategoryFiltered = filter.filterCategory(selected);
   arrayCategoryFiltered.forEach((element) => {
     const templateOptions = `
      <option value = "${element}">${element}</option>
@@ -42,7 +42,7 @@ secondSelect.addEventListener("change", () => {
     const selected = firstSelect.value;
     const selectedOption = secondSelect.value;
     // Filtrar los personajes según la opción seleccionada
-    const filteredCharacters = filterCharacters(selected, selectedOption); 
+    const filteredCharacters = filter.filterCharacters(selected, selectedOption); 
     main.innerHTML = "";
     filteredCharacters.forEach((character) => {
       let card = "";
