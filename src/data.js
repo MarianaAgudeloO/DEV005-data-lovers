@@ -15,11 +15,13 @@ const characters = data.results;
 
 // Filtrar categorías
 export const filterCategory = (optionSelected, secondSelectElement) => {
-  switch (optionSelected) {
+  let arrayCategory;
+  switch (optionSelected) {  
   case "Especie":{
     const speciesComplete = characters.map((item) => item.species);
     const speciesList = speciesComplete.filter((item, index) => speciesComplete.indexOf(item) === index);
-    speciesList.forEach((element) => {
+    arrayCategory = speciesList;
+    arrayCategory.forEach((element) => {
       const templateOptions = `
        <option value = "${element}">${element}</option>
        `;
@@ -31,7 +33,8 @@ export const filterCategory = (optionSelected, secondSelectElement) => {
   case "Género":{
     const gendersComplete = characters.map((item) => item.gender);
     const genderList = gendersComplete.filter((item, index) => gendersComplete.indexOf(item) === index);
-    genderList.forEach((element) => {
+    arrayCategory = genderList;
+    arrayCategory.forEach((element) => {
       const templateOptions = `
        <option value = "${element}">${element}</option>
        `;
@@ -43,7 +46,8 @@ export const filterCategory = (optionSelected, secondSelectElement) => {
   case "Origen":{
     const originComplete = characters.map((item) => item.origin.name);
     const originsList = originComplete.filter((item, index) => originComplete.indexOf(item) === index);
-    originsList.forEach((element) => {
+    arrayCategory = originsList;
+    arrayCategory.forEach((element) => {
       const templateOptions = `
          <option value = "${element}">${element}</option>
          `;
@@ -55,7 +59,8 @@ export const filterCategory = (optionSelected, secondSelectElement) => {
   case "Se encuentra actualmente":{
     const locationComplete = characters.map((item) => item.location.name);
     const  locationsList = locationComplete.filter((item, index) => locationComplete.indexOf(item) === index);
-    locationsList.forEach((element) => {
+    arrayCategory = locationsList;
+    arrayCategory.forEach((element) => {
       const templateOptions = `
            <option value = "${element}">${element}</option>
            `;
@@ -67,7 +72,8 @@ export const filterCategory = (optionSelected, secondSelectElement) => {
   case "Estado de vida":{
     const  statusComplete = characters.map((item) => item.status);
     const  statusList = statusComplete.filter((item, index) => statusComplete.indexOf(item) === index);
-    statusList.forEach((element) => {
+    arrayCategory = statusList;
+    arrayCategory.forEach((element) => {
       const templateOptions = `
              <option value = "${element}">${element}</option>
              `;
@@ -77,11 +83,11 @@ export const filterCategory = (optionSelected, secondSelectElement) => {
     break;
   }
   }
+  return arrayCategory;
 };
 
 // Filtrar personajes por categorías
 export const filterCharacters = (firstSelected, secondSelected, containerCards) =>{
-
   const filteredCharacters = characters.filter((character) => {
     if (firstSelected === "Especie") {
       return character.species === secondSelected;
@@ -106,6 +112,7 @@ export const filterCharacters = (firstSelected, secondSelected, containerCards) 
     card = createCard(character);
     containerCards.innerHTML += card;
   });
+  return filteredCharacters;
 }
 
 // Creación de card de cada personaje
