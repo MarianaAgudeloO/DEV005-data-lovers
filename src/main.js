@@ -1,26 +1,58 @@
-import { filter } from './data.js';
 import data from './data/rickandmorty/rickandmorty.js';
-
-
+import { filter, searchCharacter, orderCharacters, orderCharactersDescending  } from './data.js';
 const main = document.getElementById("main");
 const characters = data.results;
-
 // Renderiza los personajes al cargar la página
 window.addEventListener("load", () =>{
   characters.forEach((character) => {
     let card = "";
     card = createCard(character);
-    
     if(main.childElementCount <= 20){
       main.innerHTML += card;
     }
   });
 });
-
 const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
-
+const btnSearch = document.getElementById("search");
+const searchText = document.getElementById("searchText");
+//Buscador
+btnSearch.addEventListener("click", () => {
+  const text = searchText.value;
+  const results = searchCharacter(text)
+  main.innerHTML = "";
+  results.forEach((character) => {
+    let card = "";
+    card = createCard(character);
+    if(main.childElementCount <= 20){
+      main.innerHTML += card;
+    }
+  }
+  )
+})
+const btnSort = document.getElementById("btnSort");
+const sortSelect = document.getElementById("sort");
+//Ordenar
+btnSort.addEventListener("click", () => {
+  const sortSelected = sortSelect.value;
+  let results = [];
+  if (sortSelected === 'A-z'){
+    results = orderCharacters(characters)
+  }
+  if (sortSelected === 'Z-a'){
+    results = orderCharactersDescending(characters)
+  }
+  main.innerHTML = "";
+  results.forEach((character) => {
+    let card = "";
+    card = createCard(character);
+    if(main.childElementCount <= 20){
+      main.innerHTML += card;
+    }
+  }
+  )
+})
 // Comportamiento al elegir una categoría
 firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;
@@ -34,7 +66,6 @@ firstSelect.addEventListener("change", () =>{
   });
   secondSelect.classList.remove("none");
 });
-
 // Comportamiento al elegir una opcion de la categoría seleccionada antes
 secondSelect.addEventListener("change", () => {
   form.addEventListener("submit", (event) => {
@@ -42,7 +73,7 @@ secondSelect.addEventListener("change", () => {
     const selected = firstSelect.value;
     const selectedOption = secondSelect.value;
     // Filtrar los personajes según la opción seleccionada
-    const filteredCharacters = filter.filterCharacters(selected, selectedOption); 
+    const filteredCharacters = filter.filterCharacters(selected, selectedOption);
     main.innerHTML = "";
     filteredCharacters.forEach((character) => {
       let card = "";
@@ -51,8 +82,6 @@ secondSelect.addEventListener("change", () => {
     });
   });
 })
-
-
 // Creación de card de cada personaje
 export const createCard = (element) => {
   const templateCharacterCard = `
@@ -72,9 +101,4 @@ export const createCard = (element) => {
   `;
   return templateCharacterCard;
 }
-
-
-
-
-
 
