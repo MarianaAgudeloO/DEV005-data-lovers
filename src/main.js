@@ -61,6 +61,7 @@ btnSort.addEventListener("click", () => {
   )
 })
 
+
 // Comportamiento al elegir determinada opción del primer select
 firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;
