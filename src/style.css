@@ -6,18 +6,52 @@
 .none{
   display: none;
 }
+.btn{
+  margin: 10px;
+  padding: 4px;
+  width: 90px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body{   
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/background.jpg');
+  background-position: center center;
+  background-attachment: fixed; 
+}
 
+/* Estilos header */
+header{
+  background-color: #69C8ECFF;
+}
+nav{
+  background-color: #E89242FF;
+}
 h1{
-  margin: 40px;
   text-align: center;
 }
 .browser{
   display: flex;
   justify-content: space-around;
-  padding: 25px;
-  
+  margin: 0 auto;
+  list-style: none;
+  }
+.checkBtn{
+  float: right;
+  cursor: pointer;
+  margin-top: 12px;
+  font-size: 22px;
+  display: none;
 }
-
+#check{
+  display: none;
+}
+.boxSelect{
+  width: 200px;
+  border-radius: 20px;
+  height: 30px;
+  text-align: center;
+}
+/* Estilos contenedor cards */
 .cardContainer{
   display: flex;
   justify-content: space-around;
@@ -34,23 +68,75 @@ h1{
   height: 420px;
   border-style: solid;
   border-color: black;
+  background-color: aliceblue;
+  color: black;
 }
 .imgCard{
   width: 250px;
   height: 250px;
 }
 
-/* .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  
-  grid-gap: 5px;
-  justify-items: center;
-  align-items: center;
+@media (max-width: 1024px){
+  .boxSelect{
+    width: 140px;
+    height: 26px;
+    font-size: 12px;
+  }
+  .btn{
+    width: 70px;
+    font-size: 12px;
+  }
 }
-.grid-item1 {
-  background: grey;
-  text-align: center;
-  border: black 5px solid;
-  width: 100px;
-  height: 100px;
-} */
+
+@media (max-width: 858px){
+  .checkBtn{
+    display: block;
+    margin-top: 12px;
+    margin-right: 22px;
+    z-index: 1;    
+  }
+
+  body{   
+    background-color: forestgreen;   
+}
+
+  ul{ 
+    z-index: 0;
+    position: fixed;
+    width: 95%;
+    height: 100%;
+    top: 60px;
+    left: -100%;
+    text-align: center;
+    background-color: forestgreen;    
+    transition: all .5s;
+  }
+  .browser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    flex-direction: column;
+  }
+  .optionNav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+  }
+  .btn{
+    margin: 10px;
+  }
+   nav ul li {
+    display: block;
+    line-height: 10px;
+   }
+
+  #check:checked ~ ul{
+    left: 0;
+  }
+
+}
+
+

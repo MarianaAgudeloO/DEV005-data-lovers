@@ -48,6 +48,7 @@ export const filter = {
       const locationComplete = characters.map((item) => item.location.name);
       const  locationsList = locationComplete.filter((item, index) => locationComplete.indexOf(item) === index);
       arrayCategory = locationsList;
+      console.log(arrayCategory);
       break;
     }
     case "Estado de vida":{

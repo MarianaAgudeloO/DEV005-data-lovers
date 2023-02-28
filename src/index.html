@@ -3,48 +3,58 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Data Lovers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Rick and Morty Hub</title>
+  <script src="https://kit.fontawesome.com/2d6c6b0ffa.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div id="root">
+  <header>
     <h1>RICK AND MORTY HUB</h1>
     <nav>
-      <section class="browser">
+      
+      <input type="checkbox" id="check">
+      <label for="check" class="checkBtn">
+      <i class="fas fa-bars"></i>
+      </label>
+    
+      
+      <ul class="browser">
         <!--Zona de búsqueda-->
-        <section>
-        <input type="text" id = "searchText" placeholder="Buscar personaje">
-        <button id = "search"> Buscar </button>
-        </section>
+        <li class="optionNav">
+        <input type="text" id = "searchText" placeholder="Buscar personaje" class="boxSelect">
+        <button id = "search" class="btn"> Buscar </button>
+        </li>
         <!-- Ordenar -->
-        <section>
-            <select name="order" id="sort" >
-              <option selected="true" disabled="disabled">Ordenar por:</option>
+        <li class="optionNav">
+            <select name="order" id="sort" class="boxSelect">
+              <option selected="true" disabled="disabled">Ordenar por</option>
               <option value="A-z">A-z</option>
               <option value="Z-a">Z-a</option>
             </select>
-            <button id="btnSort">Ordenar</button>
-        </section>
+            <button id="btnSort" class="btn">Ordenar</button>
+        </li>
         <!-- Filtrar -->
-        <section>
-          <form>
-            <select name="filtrar" id="filt" >
-              <option selected="true" disabled="disabled">Filtrar por: </option>
+        <li>
+          <form class="optionNav">
+            <select name="filtrar" id="filt" class="boxSelect">
+              <option selected="true" disabled="disabled">Filtrar por</option>
               <option value="Género">Género</option>
               <option value="Estado de vida">Estado de vida</option>
               <option value="Especie">Especie</option>
-              <option value="Lugar de origen">Lugar de origen</option>
-              <option value="Location">Lugar donde vive</option>
+              <option value="Origen">Lugar de origen</option>
+              <option value="Se encuentra actualmente">Lugar donde vive</option>
             </select>
-            <select name="" id="secondSelect" class="none"></select>
-            <button id="btnForm" type="submit">Filtrar</button>
-        </form>
-      </section>
+            <select name="" id="secondSelect" class="none boxSelect"></select>
+            <button id="btnForm" type="submit" class="btn">Filtrar</button>
+          </form>
+        </li>
+      </ul>
     </nav>
-    <main id="main" class="cardContainer"></main>
-    <footer></footer>
-  </div>
+  </header>
+  <main id="main" class="cardContainer"></main>
+  <footer></footer>
   <script src="main.js" type="module"></script>
   <script src="data.js" type="module"></script>
 </body>
