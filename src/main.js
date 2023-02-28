@@ -12,11 +12,22 @@ window.addEventListener("load", () =>{
     }
   });
 });
+const check = document.getElementById("check");
+const ul = document.querySelector("ul");
 const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
 const btnSearch = document.getElementById("search");
 const searchText = document.getElementById("searchText");
+
+//Mostrar y ocultar menú hamburguesa
+check.addEventListener('change', function() {
+  if (this.checked) {
+    ul.style.left = "0";
+  } else {
+    ul.style.left = "-100%";
+  }
+});
 //Buscador
 btnSearch.addEventListener("click", () => {
   const text = searchText.value;
@@ -30,6 +41,7 @@ btnSearch.addEventListener("click", () => {
     }
   }
   )
+  ul.style.left = "-100%";
 })
 const btnSort = document.getElementById("btnSort");
 const sortSelect = document.getElementById("sort");
@@ -52,6 +64,7 @@ btnSort.addEventListener("click", () => {
     }
   }
   )
+  ul.style.left = "-100%";
 })
 // Comportamiento al elegir una categoría
 firstSelect.addEventListener("change", () =>{
@@ -79,8 +92,9 @@ secondSelect.addEventListener("change", () => {
       let card = "";
       card = createCard(character);
       main.innerHTML += card;
-    });
-  });
+    }); 
+    ul.style.left = "-100%";
+  });  
 })
 // Creación de card de cada personaje
 export const createCard = (element) => {
