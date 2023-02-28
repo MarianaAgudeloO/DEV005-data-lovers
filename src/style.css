@@ -13,11 +13,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
-body{   
+/* body{   
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./img/background.jpg');
   background-position: center center;
   background-attachment: fixed; 
-}
+} */
 
 /* Estilos header */
 header{
@@ -33,17 +33,13 @@ h1{
 .browser{
   display: flex;
   justify-content: space-around;
-  padding: 25px;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 992px;
   list-style: none;
 }
-
-/* Estilos contenedor cards */
-
-.bars{
-  width: 30px;
+.optionNav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .checkBtn{
   float: right;
@@ -51,9 +47,17 @@ h1{
   cursor: pointer;
   display:none
 }
-#check {
-  display:none
+#check{
+  display: none;
 }
+.boxSelect{
+  width: 200px;
+  border-radius: 20px;
+  height: 30px;
+  text-align: center;
+}
+
+/* Estilos contenedor cards */
 .cardContainer{
   display: flex;
   justify-content: space-around;
@@ -78,10 +82,16 @@ h1{
   height: 250px;
 }
 
-@media (max-width: 952px) {
-  nav ul li {
-    font-size: 16px;
-  }  
+@media (max-width: 1024px){
+  .boxSelect{
+    width: 140px;
+    height: 26px;
+    font-size: 12px;
+  }
+  .btn{
+    width: 70px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 858px) {

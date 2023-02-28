@@ -28,21 +28,31 @@ check.addEventListener('change', function() {
     ul.style.left = "-100%";
   }
 });
+
 //Buscador
 btnSearch.addEventListener("click", () => {
   const text = searchText.value;
-  const results = searchCharacter(text)
+  const results = searchCharacter(text);
   main.innerHTML = "";
-  results.forEach((character) => {
-    let card = "";
-    card = createCard(character);
-    if(main.childElementCount <= 20){
-      main.innerHTML += card;
-    }
-  }
-  )
+  if(results.length === 0){
+    const empty = `
+    <div>      
+        <p>No se encuentran resultados para esta búsqueda</p>        
+    </div>
+    `;
+    main.innerHTML = empty;
+  }else{
+    results.forEach((character) => {
+      let card = "";
+      card = createCard(character);
+      if(main.childElementCount <= 20){
+        main.innerHTML += card;
+      }
+    })
+  }  
   ul.style.left = "-100%";
-})
+});
+
 const btnSort = document.getElementById("btnSort");
 const sortSelect = document.getElementById("sort");
 //Ordenar

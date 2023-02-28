@@ -4,7 +4,7 @@ const characters = data.results;
 
 //Arreglo de personajes que incluyen en el nombre, el texto ingresado
 export const searchCharacter = (text) => {
-  const results = data.results.filter(character => {
+  const results = characters.filter(character => {
     return character.name.toLowerCase().includes(text.toLowerCase());
   }); 
   return results; 
@@ -49,7 +49,6 @@ export const filter = {
       const locationComplete = characters.map((item) => item.location.name);
       const  locationsList = locationComplete.filter((item, index) => locationComplete.indexOf(item) === index);
       arrayCategory = locationsList;
-      console.log(arrayCategory);
       break;
     }
     case "Estado de vida":{
@@ -69,7 +68,7 @@ export const filter = {
       if (firstSelected === "Género") {
         return character.gender === secondSelected;
       }
-      if (firstSelected === "Origen") {
+      if (firstSelected === "Lugar de origen") {
         return character.origin.name === secondSelected;
       }
       if (firstSelected === "Se encuentra actualmente") {
@@ -79,9 +78,8 @@ export const filter = {
         return character.status === secondSelected;
       }
     }); 
+    console.log(filteredCharacters);
     return filteredCharacters;
   }
 };
-
-
 
