@@ -2,16 +2,36 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  font-family: Impact;
+}
+body{
+  background-image: url('/images/background1.png');
+  background-repeat: no-repeat;
+	background-size: cover;
+  background-attachment: fixed;
 }
 .none{
   display: none;
 }
-
-h1{
-  margin: 40px;
+header{ 
+  background: linear-gradient(to right, #162f16, #102210);
+  color:white;
+  align-content:center;
   text-align: center;
 }
 
+h1{
+  padding: 20px;
+  font-family: Georgia;
+  font-size: 40px;
+}
+nav{
+  background: linear-gradient(to right, #E2E25A, #4F872C);
+}
+#resultCount{
+  margin-top: 15px;
+  text-align: center;
+}
 .browser{
   display: flex;
   justify-content: space-between;
@@ -19,12 +39,23 @@ h1{
   max-width: 992px;
   list-style: none;
 }
-
-.bars{
-  width: 30px;
+.boxSelect{
+  width: 200px;
+  border-radius: 20px;
+  height: 30px;
+  text-align: center;
+  margin-top: 10px;
+}
+.btn{
+  margin: 10px;
+  padding: 4px;
+  width: 90px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 .checkBtn{
   float: right;
+  margin-right: 2%;
   margin-top: -1%;
   cursor: pointer;
   display:none
@@ -45,15 +76,42 @@ h1{
   padding: 15px;
   margin: 20px;
   width: 300px;
-  height: 420px;
+  height: 310px;
   border-style: solid;
   border-color: black;
+  text-align: center;
+  background-color: aliceblue;
+  color: black;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px  #5A9C3B;
 }
 .imgCard{
-  width: 250px;
+  width: 260px;
   height: 250px;
+  border-radius: 10px;
+}
+.cardCenter {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
+.card:hover .cardCenter {
+  transform: rotateY(180deg);
+}
+
+.cardFront {    
+  backface-visibility: hidden;
+}
+.cardBack {
+  position:fixed;
+  top: 20px;
+  padding: 15px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+#mainName{
+  margin: 5px;
+}
 @media (max-width: 952px) {
   nav ul li {
     font-size: 16px;
@@ -75,6 +133,7 @@ h1{
     text-align: center;
     background-color: forestgreen;    
     transition: all .5s;
+    z-index: 1;
   }
   .browser{
     display: flex;
@@ -102,3 +161,6 @@ h1{
     left: 0;
   }
 }
+
+
+

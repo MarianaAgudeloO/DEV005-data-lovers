@@ -10,49 +10,52 @@
 
 <body>
   <header>
-    <h1>RICK AND MORTY HUB</h1>
+    <h1>RICK & MORTY HUB</h1>
     <nav class="nav">
         <input type="checkbox" id="check">
         <label for="check" class="checkBtn">
-          <img class="bars" src="images/bars.png"></img>
+          <i class="fas fa-bars"></i>
         </label>
       <ul  class = "browser">
         <!--Zona de búsqueda-->
         <li  class="optionNav">
-          <input type="text" id = "searchText" placeholder="Buscar personaje">
-          <button class= "btn" id = "search"> Buscar </button>
+          <input type="text" id = "searchText"  class = "boxSelect" placeholder="Search character">
+          <button class= "btn" id = "search"> Search </button>
         </li>
         <!-- Ordenar -->
         <li class="optionNav">
-            <select name="order" id="sort" >
-              <option selected="true" disabled="disabled">Ordenar por:</option>
+            <select name="order" id="sort" class = "boxSelect">
+              <option selected="true" disabled="disabled">Sort by: </option>
               <option value="A-z">A-z</option>
               <option value="Z-a">Z-a</option>
             </select>
-            <button class= "btn" id="btnSort">Ordenar</button>
+            <button class= "btn" id="btnSort">Sort</button>
           </li>
         <!-- Filtrar -->
         <li>
           <form class="optionNav">
-            <select name="filtrar" id="filt" >
-              <option selected="true" disabled="disabled">Filtrar por: </option>
-              <option value="Género">Género</option>
-              <option value="Estado de vida">Estado de vida</option>
-              <option value="Especie">Especie</option>
-              <option value="Lugar de origen">Lugar de origen</option>
-              <option value="Se encuentra actualmente">Se encuentra actualmente</option>
+            <select name="filter" id="filt" class = "boxSelect">
+              <option selected="true" disabled="disabled">Filter by: </option>
+              <option value="Gender">Gender</option>
+              <option value="Status">Status</option>
+              <option value="Specie">Specie</option>
+              <option value="Origin">Origin</option>
+              <option value="Location">Location</option>
             </select>
-            <select name="" id="secondSelect" class="none"></select>
-            <button class= "btn" id="btnForm" type="submit">Filtrar</button>
+            <select name="" id="secondSelect" class="none boxSelect"></select>
+            <button class= "btn" id="btnForm" type="submit">Filter</button>
           </form>
         </li>
       </ul>
     </nav>
   </header>
-    <main id="main" class="cardContainer"></main>
+  <p id="resultCount" style="color: white;"></p>
+  <main id="main" class="cardContainer"></main>
+    
     <footer></footer>
   <script src="main.js" type="module"></script>
   <script src="data.js" type="module"></script>
+  <script src="https://kit.fontawesome.com/2d6c6b0ffa.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

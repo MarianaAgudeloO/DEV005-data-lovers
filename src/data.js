@@ -27,31 +27,31 @@ export const filter = {
   filterCategory: (optionSelected) => {
     let arrayCategory;
     switch (optionSelected) {  
-    case "Especie":{
+    case "Specie":{
       const speciesComplete = characters.map((item) => item.species);
       const speciesList = speciesComplete.filter((item, index) => speciesComplete.indexOf(item) === index);
       arrayCategory = speciesList;
       break;
     }
-    case "Género":{
+    case "Gender":{
       const gendersComplete = characters.map((item) => item.gender);
       const genderList = gendersComplete.filter((item, index) => gendersComplete.indexOf(item) === index);
       arrayCategory = genderList;
       break;
     }
-    case "Lugar de origen":{
+    case "Origin":{
       const originComplete = characters.map((item) => item.origin.name);
       const originsList = originComplete.filter((item, index) => originComplete.indexOf(item) === index);
       arrayCategory = originsList;
       break;
     }
-    case "Se encuentra actualmente":{
+    case "Location":{
       const locationComplete = characters.map((item) => item.location.name);
       const  locationsList = locationComplete.filter((item, index) => locationComplete.indexOf(item) === index);
       arrayCategory = locationsList;
       break;
     }
-    case "Estado de vida":{
+    case "Status":{
       const  statusComplete = characters.map((item) => item.status);
       const  statusList = statusComplete.filter((item, index) => statusComplete.indexOf(item) === index);
       arrayCategory = statusList;
@@ -62,19 +62,19 @@ export const filter = {
   },
   filterCharacters: (firstSelected, secondSelected) =>{
     const filteredCharacters = characters.filter((character) => {
-      if (firstSelected === "Especie") {
+      if (firstSelected === "Specie") {
         return character.species === secondSelected;
       }
-      if (firstSelected === "Género") {
+      if (firstSelected === "Gender") {
         return character.gender === secondSelected;
       }
-      if (firstSelected === "Origen") {
+      if (firstSelected === "Origin") {
         return character.origin.name === secondSelected;
       }
-      if (firstSelected === "Se encuentra actualmente") {
+      if (firstSelected === "Location") {
         return character.location.name === secondSelected;
       }
-      if (firstSelected === "Estado de vida") {
+      if (firstSelected === "Status") {
         return character.status === secondSelected;
       }
     }); 

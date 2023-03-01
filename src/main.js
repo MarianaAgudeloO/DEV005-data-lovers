@@ -34,21 +34,35 @@ check.addEventListener('change', function() {
 //Buscador
 btnSearch.addEventListener("click", () => {
   const text = searchText.value;
-  const results = searchCharacter(text)
+  const results = searchCharacter(text);
   main.innerHTML = "";
-  results.forEach((character) => {    
-    let card = "";
-    card = createCard(character);
-    if(main.childElementCount <= 20){
-      main.innerHTML += card;
-    }
-  }
-  )
+  if(results.length === 0){
+    const empty = `
+    <div>      
+        <p style="color: white;">No results found for this search</p>        
+    </div>
+    `;
+    main.innerHTML = empty;
+  }else{
+    results.forEach((character) => {
+      let card = "";
+      card = createCard(character);
+      if(main.childElementCount <= 20){
+        main.innerHTML += card;
+      }
+    })
+  }  
   ul.style.left = "-100%";
+
+  const numberResults = results.length;
+  const showNumberResults = document.getElementById("resultCount");
+  showNumberResults.innerHTML = numberResults + " Results";
 })
 
 const btnSort = document.getElementById("btnSort");
 const sortSelect = document.getElementById("sort");
+
+
 //Ordenar
 btnSort.addEventListener("click", () => { 
   const sortSelected = sortSelect.value;
@@ -58,8 +72,7 @@ btnSort.addEventListener("click", () => {
   }
   if (sortSelected === 'Z-a'){
     results = orderCharactersDescending(characters)
-  }
-  
+  }  
   main.innerHTML = "";
   results.forEach((character) => {    
     let card = "";
@@ -69,7 +82,9 @@ btnSort.addEventListener("click", () => {
     }
   }
   )
-  ul.style.left = "-100%";
+  ul.style.left = "-100%";  
+  const showNumberResults = document.getElementById("resultCount");
+  showNumberResults.innerHTML = '';
 })
 
 
@@ -78,7 +93,8 @@ firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;
   secondSelect.innerHTML = "";
   const arrayCategoryFiltered = filter.filterCategory(selected);
-  arrayCategoryFiltered.forEach((element) => {
+  
+  arrayCategoryFiltered.forEach((element) => {    
     const templateOptions = `
      <option value = "${element}">${element}</option>
      `;
@@ -102,6 +118,9 @@ secondSelect.addEventListener("change", () => {
       main.innerHTML += card;
     }); 
     ul.style.left = "-100%";
+    const numberResults = filteredCharacters.length;
+    const showNumberResults = document.getElementById("resultCount");
+    showNumberResults.innerHTML = numberResults + " Results";
   });  
 })
 
@@ -110,16 +129,23 @@ secondSelect.addEventListener("change", () => {
 export const createCard = (element) => {
   const templateCharacterCard = `
   <div class ="card">
-    <div>
-      <img src = "${element.image}" alt = "${element.name}" class="imgCard"></img>
-    </div>
-    <div>
-      <p>Nombre: ${element.name}</p>
-      <p>Especie: ${element.species}</p>
-      <p>Género: ${element.gender}</p>
-      <p>Estado de vida: ${element.status}</p>
-      <p>Origen: ${element.origin.name}</p>
-      <p>Se encuentra actualmente: ${element.location.name}</p>
+    <div class="cardCenter">
+      <div class="cardFront">
+        <img src = "${element.image}" alt = "${element.name}" class="imgCard"></img>
+        <div>
+          <p id="mainName">${element.name}</p>          
+        </div>
+      </div>
+      <div class="cardBack">
+        <p>Name: ${element.name}</p>
+        <p>Specie: ${element.species}</p>
+        <p>Gender: ${element.gender}</p>
+        <p>Status: ${element.status}</p>
+        <p>Origin: ${element.origin.name}</p>
+        <p>Location: ${element.location.name}</p>
+        <p>Type: ${element.type}</p>
+        <p>Created: ${element.created}</p>
+      </div>
     </div>
   </div>
   `;
