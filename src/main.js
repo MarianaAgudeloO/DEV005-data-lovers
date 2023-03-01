@@ -20,8 +20,10 @@ const ul = document.querySelector("ul");
 const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
-const btnSearch = document.getElementById("search");
 const searchText = document.getElementById("searchText");
+const btnSearchMobile = document.getElementById("btnSearchMobile");
+
+
 
 //Mostrar y ocultar menú hamburguesa
 check.addEventListener('change', function() {
@@ -32,43 +34,72 @@ check.addEventListener('change', function() {
   }
 });
 //Buscador
-btnSearch.addEventListener("click", () => {
-  const text = searchText.value;
-  const results = searchCharacter(text);
+//Comportamiento del buscador en mobile
+function searchMobile() {
+  const query = searchText.value;
+  performSearch(query);
+}
+//Comportamiento del buscador en escritorio
+function searchDesktop() {
+  const query = searchText.value;
+  performSearch(query);
+}
+
+//Buscador en tiempo real o con botón dependiendo del tamaño de la página
+function checkWindowSize() {
+  if (window.innerWidth <= 858) {
+    // Dispositivos móviles: mostrar el botón de búsqueda 
+    btnSearchMobile.style.display = "block";
+    searchText.removeEventListener("input", searchDesktop);
+    btnSearchMobile.addEventListener("click", searchMobile);
+  } else {
+    // Dispositivos de escritorio: mostrar el campo de búsqueda y ocultar el botón de búsqueda móvil
+    btnSearchMobile.style.display = "none"
+    searchText.removeEventListener("click", searchMobile);
+    searchText.addEventListener("input", searchDesktop);
+  }
+}
+
+//Verificar el tamaño de la página 
+window.addEventListener("load" , () => {
+  checkWindowSize();
+});
+//Verificar el tamaño de la página cada que cambie
+window.addEventListener("resize", () => {
+  checkWindowSize();
+});
+
+//Impresión de los resultados de la búsqueda
+function performSearch(query) {
+  const results = searchCharacter(query);
   const numberResults = results.length;
   main.innerHTML = "";
-  if(results.length === 0){
+  if (results.length === 0) {
     const empty = `
-    <div>      
+      <div>      
         <p style="color: white;">No results found for this search</p>        
-    </div>
+      </div>
     `;
     main.innerHTML = empty;
     const showNumberResults = document.getElementById("resultCount");
     showNumberResults.innerHTML = '';
-  }else{
+  } else {
     results.forEach((character) => {
       let card = "";
       card = createCard(character);
-      if(main.childElementCount <= 20){
+      if (main.childElementCount <= 20) {
         main.innerHTML += card;
       }
       const showNumberResults = document.getElementById("resultCount");
       showNumberResults.innerHTML = numberResults + " Results";
     })
-  }  
-  ul.style.left = "-100%";
-
-  
-  
-})
-
-const btnSort = document.getElementById("btnSort");
+  }
+  ul.style.left = "-100%";  
+}
 const sortSelect = document.getElementById("sort");
 
-
 //Ordenar
-btnSort.addEventListener("click", () => { 
+sortSelect.addEventListener("change", () => { 
   const sortSelected = sortSelect.value;
   let results = [];
   if (sortSelected === 'A-z'){
@@ -84,8 +115,7 @@ btnSort.addEventListener("click", () => {
     if(main.childElementCount <= 20){
       main.innerHTML += card;
     }
-  }
-  )
+  })
   ul.style.left = "-100%";  
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = '';

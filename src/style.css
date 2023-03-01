@@ -19,7 +19,7 @@ header{
   align-content:center;
   text-align: center;
 }
-
+/* Estilos header */
 h1{
   padding: 20px;
   font-family: Georgia;
@@ -29,14 +29,12 @@ nav{
   background: linear-gradient(to right, #E2E25A, #4F872C);
 }
 #resultCount{
-  margin-top: 15px;
+  margin-top: 40px;
   text-align: center;
 }
 .browser{
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 992px;
+  justify-content: space-around;
   list-style: none;
 }
 .boxSelect{
@@ -63,6 +61,7 @@ nav{
 #check {
   display:none
 }
+ /* Estilos contenedor cards */
 .cardContainer{
   display: flex;
   justify-content: space-around;
@@ -112,18 +111,32 @@ nav{
 #mainName{
   margin: 5px;
 }
+/*Desktop*/
+@media screen and (min-width: 952px) {
+  #btnSearchMobile {
+    display: none;
+  }
+}
+@media (max-width: 990px) {
+  .boxSelect{
+    width: 140px;
+    border-radius: 20px;
+    height: 30px;
+    text-align: center;
+  }
+}
+/*Tablets*/
 @media (max-width: 952px) {
   nav ul li {
     font-size: 16px;
   }  
 }
-
+/*Mobile*/
 @media (max-width: 858px) {
   .checkBtn{
     display: block; 
     margin-top: -75px;   
   }
-
   ul{ 
     position: fixed;
     width: 100%;
@@ -131,7 +144,7 @@ nav{
     top: 120px;
     left: -100%;
     text-align: center;
-    background-color: forestgreen;    
+    background-color: #4F872C;    
     transition: all .5s;
     z-index: 1;
   }
@@ -159,6 +172,26 @@ nav{
    
   #check:checked ~ ul{
     left: 0;
+  }
+  .card{
+    padding: 10px;
+    margin: 15px;
+    width: 210px;
+    height: 220px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  .cardBack{
+    padding: 5px;
+    font-size: 12px;
+  }
+  .imgCard{
+    width: 170px;
+    height: 170px;
+    border-radius: 8px;
+  }
+  #mainName{
+    margin: 1px;
   }
 }
 
