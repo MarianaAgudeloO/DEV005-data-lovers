@@ -35,6 +35,7 @@ check.addEventListener('change', function() {
 btnSearch.addEventListener("click", () => {
   const text = searchText.value;
   const results = searchCharacter(text);
+  const numberResults = results.length;
   main.innerHTML = "";
   if(results.length === 0){
     const empty = `
@@ -43,6 +44,8 @@ btnSearch.addEventListener("click", () => {
     </div>
     `;
     main.innerHTML = empty;
+    const showNumberResults = document.getElementById("resultCount");
+    showNumberResults.innerHTML = '';
   }else{
     results.forEach((character) => {
       let card = "";
@@ -50,13 +53,14 @@ btnSearch.addEventListener("click", () => {
       if(main.childElementCount <= 20){
         main.innerHTML += card;
       }
+      const showNumberResults = document.getElementById("resultCount");
+      showNumberResults.innerHTML = numberResults + " Results";
     })
   }  
   ul.style.left = "-100%";
 
-  const numberResults = results.length;
-  const showNumberResults = document.getElementById("resultCount");
-  showNumberResults.innerHTML = numberResults + " Results";
+  
+  
 })
 
 const btnSort = document.getElementById("btnSort");
