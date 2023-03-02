@@ -1,4 +1,4 @@
-import { filter, searchCharacter } from '../src/data.js';
+import { filter, searchCharacter, order } from '../src/data.js';
 
 // Test buscar
 describe('searchCharacter', () => {
@@ -57,10 +57,42 @@ describe('searchCharacter', () => {
     expect(searchCharacter('124521')).toHaveLength(0);
   });
 });
-// Test ordenar
+// Test ordenar ascendente
+describe('order.orderCharacters', () => {
+  it('Debería devolver un arreglo de personajes ordenados alfabéticamente por nombre, y el primer elemento debería ser el personaje "Abadango Cluster Princess', () => {
+    const characters = [ 
+      {name: 'Abadango Cluster Princess'},    
+      {name: 'Morty Smith'},   
+      {name: 'Jerry Smith'},    
+      {name: 'Rick Sanchez'}, 
+      {name: 'Summer Smith'}, 
+      {name: 'Beth Smith'}
+    ];
 
+    const expectedFirstCharacter = { name: 'Abadango Cluster Princess'};
 
+    const orderedCharacters = order.orderCharacters(characters);
+    expect(orderedCharacters[0]).toEqual(expectedFirstCharacter);
+  });
+});
+// Test ordenar descendente
+describe('order.orderCharactersDescending', () => {
+  it('Debería devolver un arreglo de personajes ordenados de forma descendente por nombre, y el primer elemento debería ser el personaje "Summer Smith', () => {
+    const characters = [ 
+      {name: 'Abadango Cluster Princess'},    
+      {name: 'Morty Smith'},   
+      {name: 'Jerry Smith'},    
+      {name: 'Rick Sanchez'}, 
+      {name: 'Summer Smith'}, 
+      {name: 'Beth Smith'}
+    ];
 
+    const expectedFirstCharacter = { name: 'Summer Smith'};
+
+    const orderedCharacters = order.orderCharactersDescending(characters);
+    expect(orderedCharacters[0]).toEqual(expectedFirstCharacter);
+  });
+});
 // Test filtrar
 describe('filter.filterCategory', () => {
   it('Debería ser una función', () => {

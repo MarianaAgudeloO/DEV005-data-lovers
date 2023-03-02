@@ -1,5 +1,5 @@
 import data from './data/rickandmorty/rickandmorty.js';
-import { filter, searchCharacter, orderCharacters, orderCharactersDescending  } from './data.js';
+import { filter, searchCharacter, order  } from './data.js';
 
 
 const main = document.getElementById("main");
@@ -103,10 +103,10 @@ sortSelect.addEventListener("change", () => {
   const sortSelected = sortSelect.value;
   let results = [];
   if (sortSelected === 'A-z'){
-    results = orderCharacters(characters)
+    results = order.orderCharacters(characters)
   }
   if (sortSelected === 'Z-a'){
-    results = orderCharactersDescending(characters)
+    results = order.orderCharactersDescending(characters)
   }  
   main.innerHTML = "";
   results.forEach((character) => {    

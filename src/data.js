@@ -9,19 +9,23 @@ export const searchCharacter = (text) => {
   }); 
   return results; 
 }
-//Arreglo de personajes ordenados de A-z
-export const orderCharacters = (characters) => {
-  characters.sort((a, b) => a.name.localeCompare(b.name));
-  return characters;
+
+
+export const order ={
+  //Arreglo de personajes ordenados de A-z
+  orderCharacters : (characters) => {
+    characters.sort((a, b) => a.name.localeCompare(b.name));
+    return characters;
+  },
+  //Arreglo de personajes ordenados de Z-a
+  orderCharactersDescending : (characters) => {
+    characters.sort((a, b) => {
+      return b.name.localeCompare(a.name);
+    });
+    return characters; 
+  }
 }
 
-//Arreglo de personajes ordenados de Z-a
-export const orderCharactersDescending = (characters) => {
-  characters.sort((a, b) => {
-    return b.name.localeCompare(a.name);
-  });
-  return characters; 
-}
 
 export const filter = {
   filterCategory: (optionSelected) => {
