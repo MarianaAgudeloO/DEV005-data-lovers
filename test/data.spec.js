@@ -81,15 +81,6 @@ describe('filter.filterCategory', () => {
   it('La palabra Alive debería estar contenida en el array retornado para categoría Estado de vida', () => {
     expect(filter.filterCategory('Status')).toContain("Alive");
   });
-  it('Debe retorner un array con 1 elemento al filtrar por Lugar de origen Bepis 9', () => {
-    expect(filter.filterCharacters('Lugar de origen', 'Bepis 9')).toHaveLength(1);
-  });
-  it('Debe retorner un array con 1 elemento al filtrar por Se encuentra actualmente Venzenulon 7', () => {
-    expect(filter.filterCharacters('Se encuentra actualmente', 'Venzenulon 7')).toHaveLength(1);
-  });
-  it('Debe retorner un array con 147 elementos al filtrar por Estado de vida Dead', () => {
-    expect(filter.filterCharacters('Estado de vida', 'Dead')).toHaveLength(147);
-  }); 
 });
 
 describe('filter.filterCharacters', () => {
@@ -113,23 +104,3 @@ describe('filter.filterCharacters', () => {
   }); 
 });
 
-describe('filter.filterCharacters', () => {
-  it('Debería ser una función', () => {
-    expect(typeof filter.filterCharacters).toBe('function');
-  });
-  it('Debe retorner un array con 132 elementos al filtrar por especie Alien', () => {
-    expect(filter.filterCharacters('Specie', 'Alien')).toHaveLength(132);
-  });
-  it('Debe retorner un array con    elementos al filtrar por Género Female', () => {
-    expect(filter.filterCharacters('Gender', 'Female')).toHaveLength(73);
-  });
-  it('Debe retorner un array con 1 elemento al filtrar por Lugar de origen Bepis 9', () => {
-    expect(filter.filterCharacters('Origin', 'Bepis 9')).toHaveLength(1);
-  });
-  it('Debe retorner un array con 1 elemento al filtrar por Se encuentra actualmente Venzenulon 7', () => {
-    expect(filter.filterCharacters('Location', 'Venzenulon 7')).toHaveLength(1);
-  });
-  it('Debe retorner un array con 147 elementos al filtrar por Estado de vida Dead', () => {
-    expect(filter.filterCharacters('Status', 'Dead')).toHaveLength(147);
-  }); 
-});

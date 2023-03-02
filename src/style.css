@@ -70,7 +70,7 @@ nav{
   display: none;
 }
 .boxSelect{
-  width: 200px;
+  width: 190px;
   border-radius: 20px;
   height: 30px;
   text-align: center;
@@ -126,9 +126,14 @@ nav{
 #mainName{
   margin: 5px;
 }
-@media (max-width: 952px) {
-  nav ul li {
-    font-size: 16px;
+
+/* Responsive */
+@media (max-width: 990px) {
+  .boxSelect{
+    width: 140px;
+    border-radius: 20px;
+    height: 30px;
+    text-align: center;
   }  
 }
 
@@ -173,6 +178,22 @@ nav{
    
   #check:checked ~ ul{
     left: 0;
+  }
+  .card{
+    padding: 10px;
+    margin: 15px;
+    width: 210px;
+    height: 220px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  .imgCard{
+    width: 170px;
+    height: 170px;
+    border-radius: 8px;
+  }
+  #mainName{
+    margin: 1px;
   }
 }
 

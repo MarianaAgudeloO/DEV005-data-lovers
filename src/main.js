@@ -61,12 +61,11 @@ btnSearch.addEventListener("click", () => {
   
 })
 
-const btnSort = document.getElementById("btnSort");
 const sortSelect = document.getElementById("sort");
 
 
 //Ordenar
-btnSort.addEventListener("click", () => {
+sortSelect.addEventListener("change", () => {
   const sortSelected = sortSelect.value;
   let results = [];
   if (sortSelected === 'A-z'){
@@ -74,7 +73,7 @@ btnSort.addEventListener("click", () => {
   }
   if (sortSelected === 'Z-a'){
     results = orderCharactersDescending(characters)
-  }  
+  }
   main.innerHTML = "";
   results.forEach((character) => {
     let card = "";
@@ -82,12 +81,12 @@ btnSort.addEventListener("click", () => {
     if(main.childElementCount <= 20){
       main.innerHTML += card;
     }
-  }
-  )
-  ul.style.left = "-100%";  
+  })
+  ul.style.left = "-100%";
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = '';
 })
+
 // Comportamiento al elegir una categoría
 firstSelect.addEventListener("change", () =>{
   const selected = firstSelect.value;

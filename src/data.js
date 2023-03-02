@@ -78,7 +78,6 @@ export const filter = {
         return character.status === secondSelected;
       }
     }); 
-    console.log(filteredCharacters);
     return filteredCharacters;
   }
 };
