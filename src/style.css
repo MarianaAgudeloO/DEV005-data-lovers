@@ -367,6 +367,16 @@ h1{
   
 }
 
+@media screen and (max-width: 858px) and (orientation: landscape){
+  .browser li{
+    margin: 5px 0 0 0;
+  }
+  .browser{
+    overflow: scroll;
+    height: calc(100% - 65px);
+  }
+}
+
 
 
 

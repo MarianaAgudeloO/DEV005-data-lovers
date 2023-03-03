@@ -124,8 +124,7 @@ sortSelect.addEventListener("change", () => {
     }
     const browser = document.querySelector(".browser");
     browser.classList.toggle("show");
-  }) 
-  
+  })   
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = '';
 })
