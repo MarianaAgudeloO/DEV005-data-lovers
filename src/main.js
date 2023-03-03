@@ -98,6 +98,7 @@ function performSearch(query) {
       }
       const showNumberResults = document.getElementById("resultCount");
       showNumberResults.innerHTML = numberResults + " Results";
+      showNumberResults.style.fontSize = "20px";
     })
   }
 }
@@ -109,10 +110,10 @@ sortSelect.addEventListener("change", () => {
   const sortSelected = sortSelect.value;
   let results = [];
   if (sortSelected === 'A-z'){
-    results = order.orderCharacters(characters)
+    results = order.orderCharacters(characters)    
   }
   if (sortSelected === 'Z-a'){
-    results = order.orderCharactersDescending(characters)
+    results = order.orderCharactersDescending(characters)    
   }  
   main.innerHTML = "";
   results.forEach((character) => {    
@@ -121,7 +122,10 @@ sortSelect.addEventListener("change", () => {
     if(main.childElementCount <= 20){
       main.innerHTML += card;
     }
+    const browser = document.querySelector(".browser");
+    browser.classList.toggle("show");
   }) 
+  
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = '';
 })
@@ -159,9 +163,12 @@ function completeFilter(event) {
     card = createCard(character);
     main.innerHTML += card;
   }); 
+  const browser = document.querySelector(".browser");
+  browser.classList.toggle("show");
   const numberResults = filteredCharacters.length;
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = numberResults + " Results";
+  showNumberResults.style.fontSize = "20px";
 }
 
 // Creación de card de cada personaje
