@@ -4,14 +4,19 @@ import { filter, searchCharacter, orderCharacters, orderCharactersDescending  } 
 // Identifica al cargar el DOM si esta o no el boton responsive 
 addEventListener('DOMContentLoaded', () =>{
   const btn_menu = document.querySelector(".btn_menu");
+
   if(btn_menu){
     btn_menu.addEventListener("click", () =>{
       const browser = document.querySelector(".browser");
-      browser.classList.toggle("show");
+      browser.classList.toggle("show");    
     })
   }
 })
 
+const logo = document.querySelector(".logo")
+logo.addEventListener("click", () =>{
+  location.reload();
+})
 // Renderiza los personajes al cargar la página
 const main = document.getElementById("main");
 const characters = data.results;
@@ -27,7 +32,6 @@ window.addEventListener("load", () =>{
 });
 
 
-const ul = document.querySelector("ul");
 const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
@@ -154,7 +158,8 @@ function completeFilter(event) {
     card = createCard(character);
     main.innerHTML += card;
   }); 
-  ul.style.left = "-100%";
+  const browser = document.querySelector(".browser");
+  browser.classList.toggle("show");
   const numberResults = filteredCharacters.length;
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = numberResults + " Results";
