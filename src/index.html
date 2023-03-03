@@ -3,32 +3,27 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Data Lovers</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="images/icon.png">
+  <title>Data Lovers</title>
+  
 </head>
 
 <body>
   <header>
-    <h1>RICK AND MORTY HUB</h1>
-    <nav class="nav">
-        <input type="checkbox" id="check">
-        <label for="check" class="checkBtn">
-          <i class="fas fa-bars"></i>
-        </label>
+    <nav class="menu">
+      <img src="./images/RICK_MORTY.webp" alt="" class="logo">
       <ul  class = "browser">
         <!--Zona de búsqueda-->
-        <li  class="optionNav">
-          <div>
+        <li class="searchBox">
             <input type="text" id = "searchText"  class = "boxSelect" placeholder="Search character">
-          </div>
-          <div>
             <button id="btnSearchMobile" class="btn">Search</button>
-          </div>
         </li>
         <!-- Ordenar -->
-        <li class="optionNav">
+        <li>
           <select name="order" id="sort" class = "boxSelect">
             <option selected="true" disabled="disabled">Sort by: </option>
             <option value="A-z">A-z</option>
@@ -37,7 +32,7 @@
         </li>
         <!-- Filtrar -->
         <li>
-          <form class="optionNav">
+          <form>
             <select name="filter" id="filt" class = "boxSelect">
               <option selected="true" disabled="disabled">Filter by: </option>
               <option value="Gender">Gender</option>
@@ -51,7 +46,15 @@
           </form>
         </li>
       </ul>
+      <span class="btn_menu">
+        <img src = "./images/bars.png" alt = "menú hamburguesa">
+      </span>
     </nav>
+    
+    <section class="titleContainer">
+      <h1 class="title">RICK AND MORTY HUB</h1>
+      <img src="./images/rickandmortyportal.png" alt="">
+    </section>
   </header>
   <p id="resultCount" style="color: white;"></p>
   <main id="main" class="cardContainer"></main>
@@ -59,8 +62,6 @@
     <footer></footer>
   <script src="main.js" type="module"></script>
   <script src="data.js" type="module"></script>
-  <script src="https://kit.fontawesome.com/2d6c6b0ffa.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
-

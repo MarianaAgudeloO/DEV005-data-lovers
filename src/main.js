@@ -2,10 +2,25 @@ import data from './data/rickandmorty/rickandmorty.js';
 import { filter, searchCharacter, order  } from './data.js';
 
 
+// Identifica al cargar el DOM si esta o no el boton responsive 
+addEventListener('DOMContentLoaded', () =>{
+
+  const btn_menu = document.querySelector(".btn_menu");
+  if(btn_menu){
+    btn_menu.addEventListener("click", () =>{
+      const browser = document.querySelector(".browser");
+      browser.classList.toggle("show");
+    })
+  }
+})
+const logo = document.querySelector(".logo")
+logo.addEventListener("click", () =>{
+  location.reload();
+})
+// Renderiza los personajes al cargar la página
 const main = document.getElementById("main");
 const characters = data.results;
 
-// Renderiza los personajes al cargar la página
 window.addEventListener("load", () =>{
   characters.forEach((character) => {
     let card = "";
@@ -15,29 +30,20 @@ window.addEventListener("load", () =>{
     }
   });
 });
-const check = document.getElementById("check");
-const ul = document.querySelector("ul");
+
 const form = document.querySelector("form");
 const firstSelect = document.getElementById("filt");
 const secondSelect = document.getElementById("secondSelect");
 const searchText = document.getElementById("searchText");
 const btnSearchMobile = document.getElementById("btnSearchMobile");
 
-
-
-//Mostrar y ocultar menú hamburguesa
-check.addEventListener('change', function() {
-  if (this.checked) {
-    ul.style.left = "0";
-  } else {
-    ul.style.left = "-100%";
-  }
-});
 //Buscador
 //Comportamiento del buscador en mobile
 function searchMobile() {
   const query = searchText.value;
   performSearch(query);
+  const browser = document.querySelector(".browser");
+  browser.classList.toggle("show");
 }
 //Comportamiento del buscador en escritorio
 function searchDesktop() {
@@ -94,8 +100,8 @@ function performSearch(query) {
       showNumberResults.innerHTML = numberResults + " Results";
     })
   }
-  ul.style.left = "-100%";  
 }
+
 const sortSelect = document.getElementById("sort");
 
 //Ordenar
@@ -115,8 +121,7 @@ sortSelect.addEventListener("change", () => {
     if(main.childElementCount <= 20){
       main.innerHTML += card;
     }
-  })
-  ul.style.left = "-100%";  
+  }) 
   const showNumberResults = document.getElementById("resultCount");
   showNumberResults.innerHTML = '';
 })
@@ -139,25 +144,25 @@ firstSelect.addEventListener("change", () =>{
 
 // Comportamiento al elegir una opcion de la categoría seleccionada antes
 secondSelect.addEventListener("change", () => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevenir que se recargue la página
-    const selected = firstSelect.value;
-    const selectedOption = secondSelect.value;
-    // Filtrar los personajes según la opción seleccionada
-    const filteredCharacters = filter.filterCharacters(selected, selectedOption); 
-    main.innerHTML = "";
-    filteredCharacters.forEach((character) => {
-      let card = "";
-      card = createCard(character);
-      main.innerHTML += card;
-    }); 
-    ul.style.left = "-100%";
-    const numberResults = filteredCharacters.length;
-    const showNumberResults = document.getElementById("resultCount");
-    showNumberResults.innerHTML = numberResults + " Results";
-  });  
+  form.addEventListener("submit", completeFilter);  
 })
 
+function completeFilter(event) {
+  event.preventDefault(); // Prevenir que se recargue la página
+  const selected = firstSelect.value;
+  const selectedOption = secondSelect.value;
+  // Filtrar los personajes según la opción seleccionada
+  const filteredCharacters = filter.filterCharacters(selected, selectedOption);
+  main.innerHTML = "";
+  filteredCharacters.forEach((character) => {
+    let card = "";
+    card = createCard(character);
+    main.innerHTML += card;
+  }); 
+  const numberResults = filteredCharacters.length;
+  const showNumberResults = document.getElementById("resultCount");
+  showNumberResults.innerHTML = numberResults + " Results";
+}
 
 // Creación de card de cada personaje
 export const createCard = (element) => {
@@ -185,6 +190,7 @@ export const createCard = (element) => {
   `;
   return templateCharacterCard;
 }
+
 
 
 

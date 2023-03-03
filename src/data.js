@@ -1,5 +1,4 @@
 import data from './data/rickandmorty/rickandmorty.js';
-
 const characters = data.results;
 
 //Arreglo de personajes que incluyen en el nombre, el texto ingresado
