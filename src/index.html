@@ -3,49 +3,68 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://kit.fontawesome.com/2d6c6b0ffa.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Pangolin&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/icon.png">
   <title>Data Lovers</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div id="root">
-    <h1>RICK AND MORTY HUB</h1>
-    <nav>
-      <section>
+  <header>
+    <nav class="menu">
+      <img src="./img/pngegg.png" alt="" class="logo">
+      <ul  class = "browser">
         <!--Zona de búsqueda-->
-        <input type="text" id = "searchText" placeholder="Buscar personaje">
-        <button id = "search"> Buscar </button>
+        <li class="searchBox">
+            <input type="text" id = "searchText"  class = "boxSelect" placeholder="Search character">
+            <button id="btnSearchMobile" class="btn">Search</button>
+        </li>
         <!-- Ordenar -->
-        <section>
-            <select name="order" id="sort" >
-              <option selected="true" disabled="disabled">Ordenar por:</option>
-              <option value="A-z">A-z</option>
-              <option value="Z-a">Z-a</option>
-            </select>
-            <button id="btnSort">Ordenar</button>
-        </section>
+        <li>
+          <select name="order" id="sort" class = "boxSelect">
+            <option selected="true" disabled="disabled">Sort by: </option>
+            <option value="A-z">A-z</option>
+            <option value="Z-a">Z-a</option>
+          </select>
+        </li>
         <!-- Filtrar -->
-        <section>
+        <li>
           <form>
-            <select name="filtrar" id="filt" >
-              <option selected="true" disabled="disabled">Filtrar por: </option>
-              <option value="Género">Género</option>
-              <option value="Estado de vida">Estado de vida</option>
-              <option value="Especie">Especie</option>
-              <option value="Lugar de origen">Lugar de origen</option>
-              <option value="Location">Lugar donde vive</option>
+            <select name="filter" id="filt" class = "boxSelect">
+              <option selected="true" disabled="disabled">Filter by: </option>
+              <option value="Gender">Gender</option>
+              <option value="Status">Status</option>
+              <option value="Specie">Specie</option>
+              <option value="Origin">Origin</option>
+              <option value="Location">Location</option>
             </select>
-            <select name="" id="secondSelect" class="none"></select>
-            <button id="btnForm" type="submit">Filtrar</button>
-        </form>
-        </section>
-      </section>
+            <select name="" id="secondSelect" class="none boxSelect"></select>
+            <button class= "btn" id="btnForm" type="submit">Filter</button>
+          </form>
+        </li>
+      </ul>
+      <span class="btn_menu">
+        <i class="fa-solid fa-bars"></i>
+      </span>
     </nav>
-    <main id="main" class="cardContainer"></main>
+    <section class="title">
+      <h1 class="prueba">RICK AND MORTY HUB</h1>
+      <img src="./img/rick and morty.png" alt="">
+    </section>
+  </header>
+  <p id="resultCount" style="color: white;"></p>
+  <main id="main" class="cardContainer"></main>
+  <section>
+    
+  </section>
+    
     <footer></footer>
-  </div>
   <script src="main.js" type="module"></script>
   <script src="data.js" type="module"></script>
+  <script src="https://kit.fontawesome.com/2d6c6b0ffa.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

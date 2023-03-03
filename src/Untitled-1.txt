@@ -1,0 +1,15 @@
+window.addEventListener("load", () =>{
+  fetch('https://rickandmortyapi.com/api/character')
+    .then((respuesta) => respuesta.json())
+    .then((data) => {
+     
+      const characters=data.results;
+      characters.forEach((character) => {
+        let card = "";
+        card = createCard(character);
+        if(main.childElementCount <= 20){
+          main.innerHTML += card;
+        }
+      });
+    });   
+})
