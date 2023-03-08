@@ -1,9 +1,6 @@
-import data from './data/rickandmorty/rickandmorty.js';
-const characters = data.results;
-
 //Arreglo de personajes que incluyen en el nombre, el texto ingresado
-export const searchCharacter = (text) => {
-  const results = data.results.filter(character => {
+export const searchCharacter = (characters, text) => {
+  const results = characters.filter(character => {
     return character.name.toLowerCase().includes(text.toLowerCase());
   }); 
   return results; 
@@ -27,7 +24,7 @@ export const order ={
 
 
 export const filter = {
-  filterCategory: (optionSelected) => {
+  filterCategory: (characters, optionSelected) => {
     let arrayCategory;
     switch (optionSelected) {  
     case "Specie":{
@@ -63,7 +60,7 @@ export const filter = {
     }
     return arrayCategory;
   },
-  filterCharacters: (firstSelected, secondSelected) =>{
+  filterCharacters: (characters, firstSelected, secondSelected) =>{
     const filteredCharacters = characters.filter((character) => {
       if (firstSelected === "Specie") {
         return character.species === secondSelected;
@@ -84,6 +81,3 @@ export const filter = {
     return filteredCharacters;
   }
 };
-
-
-
