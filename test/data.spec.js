@@ -5,7 +5,7 @@ describe('searchCharacter', () => {
   it('Debería ser una función', () => {
     expect(typeof searchCharacter).toBe('function');
   });
-  it('Al buscar el nombre Summer debe encontrar un elemnto igual a la variable instanciada', () => {
+  it('Al buscar el nombre Summer debe encontrar un elemento igual a la variable instanciada', () => {
     const compare = {
       "id": 3,
       "name": "Summer Smith",
