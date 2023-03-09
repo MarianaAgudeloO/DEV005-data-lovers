@@ -5,58 +5,45 @@ describe('searchCharacter', () => {
   it('Debería ser una función', () => {
     expect(typeof searchCharacter).toBe('function');
   });
-  it('Al buscar el nombre Summer debe encontrar un elemento igual a la variable instanciada', () => {
-    const compare = {
-      "id": 3,
-      "name": "Summer Smith",
-      "status": "Alive",
-      "species": "Human",
-      "type": "",
-      "gender": "Female",
-      "origin": {
-        "name": "Earth (Replacement Dimension)",
-        "url": "https://rickandmortyapi.com/api/location/20"
-      },
-      "location": {
-        "name": "Earth (Replacement Dimension)",
-        "url": "https://rickandmortyapi.com/api/location/20"
-      },
-      "image": "https://raw.githubusercontent.com/Laboratoria/rick-and-morty-images/master/images/3.jpeg",
-      "episode": [
-        "https://rickandmortyapi.com/api/episode/6",
-        "https://rickandmortyapi.com/api/episode/7",
-        "https://rickandmortyapi.com/api/episode/8",
-        "https://rickandmortyapi.com/api/episode/9",
-        "https://rickandmortyapi.com/api/episode/10",
-        "https://rickandmortyapi.com/api/episode/11",
-        "https://rickandmortyapi.com/api/episode/12",
-        "https://rickandmortyapi.com/api/episode/14",
-        "https://rickandmortyapi.com/api/episode/15",
-        "https://rickandmortyapi.com/api/episode/16",
-        "https://rickandmortyapi.com/api/episode/17",
-        "https://rickandmortyapi.com/api/episode/18",
-        "https://rickandmortyapi.com/api/episode/19",
-        "https://rickandmortyapi.com/api/episode/20",
-        "https://rickandmortyapi.com/api/episode/21",
-        "https://rickandmortyapi.com/api/episode/22",
-        "https://rickandmortyapi.com/api/episode/23",
-        "https://rickandmortyapi.com/api/episode/24",
-        "https://rickandmortyapi.com/api/episode/25",
-        "https://rickandmortyapi.com/api/episode/26",
-        "https://rickandmortyapi.com/api/episode/27",
-        "https://rickandmortyapi.com/api/episode/29",
-        "https://rickandmortyapi.com/api/episode/30",
-        "https://rickandmortyapi.com/api/episode/31"
-      ],
-      "url": "https://rickandmortyapi.com/api/character/3",
-      "created": "2017-11-04T19:09:56.428Z"
-    }      
-    expect(searchCharacter('Summer')).toContainEqual(compare);
+  describe('searchCharacter', () => {
+    it('debe devolver un array vacío si no encuentra resultados', () => {
+      const characters = [
+        { id: 1, name: 'Rick Sanchez' },
+        { id: 2, name: 'Morty Smith' }
+      ];
+      
+      const result = searchCharacter(characters, 'Summer');
+      
+      expect(result).toEqual([]);
+    });
+    
+    it('debe encontrar personajes que contengan el texto especificado', () => {
+      const characters = [
+        { id: 1, name: 'Rick Sanchez' },
+        { id: 2, name: 'Morty Smith' },
+        { id: 3, name: 'Summer Smith' }
+      ];
+      
+      const result = searchCharacter(characters, 'Summer');
+      
+      expect(result).toEqual([{ id: 3, name: 'Summer Smith' }]);
+    });
+    
+    it('debe buscar sin importar mayúsculas o minúsculas', () => {
+      const characters = [
+        { id: 1, name: 'Rick Sanchez' },
+        { id: 2, name: 'Morty Smith' },
+        { id: 3, name: 'Summer Smith' }
+      ];
+      
+      const result = searchCharacter(characters, 'SUMMER');
+      
+      expect(result).toEqual([{ id: 3, name: 'Summer Smith' }]);
+    });
   });
-  it('Al buscar 124521 debe retornar un array vacío', () => {
-    expect(searchCharacter('124521')).toHaveLength(0);
-  });
+  
 });
+
 // Test ordenar ascendente
 describe('order.orderCharacters', () => {
   it('Debería devolver un arreglo de personajes ordenados alfabéticamente por nombre, y el primer elemento debería ser el personaje "Abadango Cluster Princess', () => {
@@ -93,45 +80,81 @@ describe('order.orderCharactersDescending', () => {
     expect(orderedCharacters[0]).toEqual(expectedFirstCharacter);
   });
 });
-// Test filtrar
+
+// Test filtrar por categoría
 describe('filter.filterCategory', () => {
   it('Debería ser una función', () => {
     expect(typeof filter.filterCategory).toBe('function');
   });
-  it('La palabra Alien debería estar contenida en el array retornado para categoría Especie', () => {
-    expect(filter.filterCategory('Specie')).toContain("Alien");
+  const characters = [
+    { name: "Rick Sanchez", species: "Human", gender: "Male", origin: { name: "Earth" }, location: { name: "Earth" }, status: "Alive" }, 
+    { name: "Morty Smith",  species: "Human", gender: "Male", origin: { name: "Earth" }, location: { name: "Earth" }, status: "Alive" }, 
+    { name: "Summer Smith", species: "Human", gender: "Female", origin: { name: "Earth" }, location: { name: "Earth" }, status: "Alive" }   
+  ];
+
+  it("returns unique species list", () => {
+    const result = filter.filterCategory(characters, "Specie");
+    expect(result).toEqual(["Human"]);
   });
-  it('La palabra Male debería estar contenida en el array retornado para categoría Género', () => {
-    expect(filter.filterCategory('Gender')).toContain("Male");
+
+  it("returns unique gender list", () => {
+    const result = filter.filterCategory(characters, "Gender");
+    expect(result).toEqual(["Male", "Female"]);
   });
-  it('La palabra Abadango debería estar contenida en el array retornado para categoría Lugar de origen', () => {
-    expect(filter.filterCategory('Origin')).toContain("Abadango");
+
+  it("returns unique origin list", () => {
+    const result = filter.filterCategory(characters, "Origin");
+    expect(result).toEqual(["Earth"]);
   });
-  it('La palabra Purge Planet debería estar contenida en el array retornado para categoría Se encuentra actualmente', () => {
-    expect(filter.filterCategory('Location')).toContain("Purge Planet");
+
+  it("returns unique location list", () => {
+    const result = filter.filterCategory(characters, "Location");
+    expect(result).toEqual(["Earth"]);
   });
-  it('La palabra Alive debería estar contenida en el array retornado para categoría Estado de vida', () => {
-    expect(filter.filterCategory('Status')).toContain("Alive");
+
+  it("returns unique status list", () => {
+    const result = filter.filterCategory(characters, "Status");
+    expect(result).toEqual(["Alive"]);
   });
 });
 
+// Test filtrar por personaje 
 describe('filter.filterCharacters', () => {
   it('Debería ser una función', () => {
     expect(typeof filter.filterCharacters).toBe('function');
   });
-  it('Debe retorner un array con 132 elementos al filtrar por especie Alien', () => {
-    expect(filter.filterCharacters('Specie', 'Alien')).toHaveLength(132);
+  const characters = [
+    { name: 'Rick', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+    { name: 'Morty', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+    { name: 'Summer', species: 'Human', gender: 'Female', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+    { name: 'Birdperson', species: 'Alien', gender: 'Male', origin: { name: 'Bird World' }, location: { name: 'Earth' }, status: 'Dead' },
+    { name: 'Jerry', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+    { name: 'Unity', species: 'Alien', gender: 'Genderless', origin: { name: 'Gromflom Prime' }, location: { name: 'Gromflom Prime' }, status: 'Dead' },
+  ];
+
+  it('devuelve los personajes que coinciden con la especie seleccionada', () => {
+    const result = filter.filterCharacters(characters, 'Specie', 'Human');
+    expect(result).toEqual([
+      { name: 'Rick', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+      { name: 'Morty', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+      { name: 'Summer', species: 'Human', gender: 'Female', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+      { name: 'Jerry', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+    ]);
   });
-  it('Debe retorner un array con    elementos al filtrar por Género Female', () => {
-    expect(filter.filterCharacters('Gender', 'Female')).toHaveLength(73);
+
+  it('Devuelve los personajes que coinciden con el género seleccionado', () => {
+    const result = filter.filterCharacters(characters, 'Gender', 'Male');
+    expect(result).toEqual([
+      { name: 'Rick', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+      { name: 'Morty', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+      { name: 'Birdperson', species: 'Alien', gender: 'Male', origin: { name: 'Bird World' }, location: { name: 'Earth' }, status: 'Dead' },
+      { name: 'Jerry', species: 'Human', gender: 'Male', origin: { name: 'Earth' }, location: { name: 'Earth' }, status: 'Alive' },
+    ]);
   });
-  it('Debe retorner un array con 1 elemento al filtrar por Lugar de origen Bepis 9', () => {
-    expect(filter.filterCharacters('Origin', 'Bepis 9')).toHaveLength(1);
+  it('devuelve los personajes que coinciden con el origen seleccionado', () => {
+    const result = filter.filterCharacters(characters, 'Origin', 'Bird World');
+    expect(result).toEqual([
+      { name: 'Birdperson', species: 'Alien', gender: 'Male', origin: { name: 'Bird World' }, location: { name: 'Earth' }, status: 'Dead' }
+    ]);
   });
-  it('Debe retorner un array con 1 elemento al filtrar por Se encuentra actualmente Venzenulon 7', () => {
-    expect(filter.filterCharacters('Location', 'Venzenulon 7')).toHaveLength(1);
-  });
-  it('Debe retorner un array con 147 elementos al filtrar por Estado de vida Dead', () => {
-    expect(filter.filterCharacters('Status', 'Dead')).toHaveLength(147);
-  }); 
-});
+})

@@ -65,7 +65,7 @@ sortSelect.addEventListener("change", () => {
   const secondSelect = document.getElementById("secondSelect");
   const searchText = document.getElementById("searchText");
   const btnSearchMobile = document.getElementById("btnSearchMobile");
-
+  
   //Buscador
   //Comportamiento del buscador en mobile
   function searchMobile() {
@@ -223,6 +223,9 @@ export const createCard = (element) => {
   `;
   return templateCharacterCard;
 }
+
+
+
 
 
 
