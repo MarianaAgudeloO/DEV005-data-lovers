@@ -22,5 +22,5 @@ Este es un buscador interactivo que le permite explorar y filtrar información s
 
 ## ¡Disfrute explorando el universo de Rick and Morty!
 
-# Te compartimos también nuestros prototipos realizados antes de iniciar el proyecto <3 
+### Te compartimos también nuestros prototipos realizados antes de iniciar el proyecto <3 
 https://www.figma.com/file/Mu7biI1Z0VJND6TrToNiGw/Data-Lovers?node-id=5%3A2&t=vVqlbq9pLW0gwDrM-1
