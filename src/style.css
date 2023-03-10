@@ -137,6 +137,7 @@ h1{
 .logo{
   padding: 0 40px;
   width: 250px;
+  cursor: pointer;
   }
 .browser{
     display: flex;
