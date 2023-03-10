@@ -24,3 +24,6 @@ Este es un buscador interactivo que le permite explorar y filtrar información s
 
 ### Te compartimos también nuestros prototipos realizados antes de iniciar el proyecto <3 
 https://www.figma.com/file/Mu7biI1Z0VJND6TrToNiGw/Data-Lovers?node-id=5%3A2&t=vVqlbq9pLW0gwDrM-1
+
+### ¡Conoce nuestras historias de usuario!
+https://trello.com/invite/b/mc4dbvgu/ATTI0a639cb5cb6c5a65551ba3701f79b4ffAADD51E5/data-lovers-planning
